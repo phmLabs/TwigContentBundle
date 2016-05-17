@@ -25,5 +25,5 @@ The http retriever can be used to fetch content via an http request.
 services:
     phmlabs.content.retriever:
         class: phmLabs\TwigContentBundle\Retriever\HttpRetriever
-        arguments: ["http://cms.koalamon.com/#identifier#"]
+        arguments: ["http://cms.example.com/#identifier#"]
 ```
