@@ -1,0 +1,11 @@
+services:
+
+    phmlabs.content.retriever:
+        class: phmLabs\TwigContentBundle\Retriever\NullRetriever
+
+    phmlabs.content.twig.extension:
+        class: phmLabs\TwigContentBundle\Twig\ContentExtension
+        arguments: ['@phmlabs.content.retriever']
+        public: false
+        tags:
+            - { name: twig.extension }
