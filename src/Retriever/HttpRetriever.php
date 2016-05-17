@@ -2,7 +2,7 @@
 
 namespace phmLabs\TwigContentBundle\Retriever;
 
-class WordpressRetriever extends Retriever
+class HttpRetriever extends Retriever
 {
     private $cmsBasePath;
 
@@ -13,7 +13,7 @@ class WordpressRetriever extends Retriever
 
     protected function doRender($identifier)
     {
-        $content = @file_get_contents($this->cmsBasePath . $identifier);
+	$content = @file_get_contents(str_replace('#identifier#', $identifier, $this->cmsBasePath));
 
         if (!$content) {
             return false;
