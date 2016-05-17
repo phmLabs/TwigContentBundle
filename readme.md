@@ -6,8 +6,8 @@ This twig tag extension helps to provide content snippets from different sources
 
 ```twig
 {% content status_no_projects_yet %}
-    This is the default text for the content snippet with the identifier status_no_projects_yet. It will appear if the
-    configured retriever does not return content.
+    This is the default text for the content snippet with the identifier status_no_projects_yet. 
+    It will appear if the configured retriever does not return content.
 {% endcontent %}
 ```
 
