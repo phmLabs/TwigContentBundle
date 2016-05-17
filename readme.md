@@ -20,7 +20,7 @@ The null retriever returns the text defined inside the content block. The null r
 The http retriever can be used to fetch content via an http request.
 
 ```yml
-# app/config/service.yml
+# app/config/services.yml
 
 services:
     phmlabs.content.retriever:
