@@ -9,3 +9,9 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+
+    phmlabs.content.twig.secure.extension:
+        class: phmLabs\TwigContentBundle\Twig\SecureExtension
+        public: false
+        tags:
+            - { name: twig.extension }

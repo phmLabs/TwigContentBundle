@@ -13,7 +13,7 @@ class HttpRetriever extends Retriever
 
     protected function doRender($identifier)
     {
-	$content = @file_get_contents(str_replace('#identifier#', $identifier, $this->cmsBasePath));
+        $content = @file_get_contents(str_replace('#identifier#', $identifier, $this->cmsBasePath));
 
         if (!$content) {
             return false;

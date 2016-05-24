@@ -6,7 +6,7 @@ abstract class Retriever
 {
     final public function render($identifier, $fallback = '')
     {
-        $content = static::doRender($identifier);
+        $content = $this->doRender($identifier);
 
         if (!$content) {
             $content = $fallback;
