@@ -66,5 +66,4 @@ class ContentNode extends \Twig_Node
             ->raw('echo "' . str_replace('"', '\"', $rawText) . '";')
             ->raw(PHP_EOL);
     }
-
 }

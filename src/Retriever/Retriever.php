@@ -12,7 +12,9 @@ abstract class Retriever
             $content = $fallback;
         }
 
-        $content = '<span data-cms-identifier="' . $identifier . '" class="cms-identifier">' . $identifier . '</span><span class="cms-content" data-cms-identifier="' . $identifier . '">' . $content . "</span>";
+        if (strpos($identifier, 'email') === false) {
+            $content = '<span data-cms-identifier="' . $identifier . '" class="cms-identifier" style="display:none">' . $identifier . '</span><span class="cms-content" data-cms-identifier="' . $identifier . '">' . $content . "</span>";
+        }
 
         return $content;
     }
