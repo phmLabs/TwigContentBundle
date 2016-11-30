@@ -15,3 +15,9 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+
+    phmlabs.content.twig.duration.extension:
+        class: phmLabs\TwigContentBundle\Twig\DurationExtension
+        public: false
+        tags:
+            - { name: twig.extension }
