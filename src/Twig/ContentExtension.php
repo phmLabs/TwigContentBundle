@@ -1,26 +1,31 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nils.langner
- * Date: 15.05.16
- * Time: 08:14
- */
 
 namespace phmLabs\TwigContentBundle\Twig;
 
+use Doctrine\Common\Cache\VoidCache;
 use phmLabs\TwigContentBundle\Retriever\Retriever;
+use Psr\Cache\CacheItemPoolInterface;
 
 class ContentExtension extends \Twig_Extension
 {
-    public function __construct(Retriever $retriever)
+    private $cacheItemPool;
+    private $retriever;
+
+    public function __construct(Retriever $retriever, CacheItemPoolInterface $cacheItemPool = null)
     {
         $this->retriever = $retriever;
+
+        if ($cacheItemPool) {
+            $this->cacheItemPool = $cacheItemPool;
+        } else {
+            $this->cacheItemPool = new VoidCache();
+        }
     }
 
     public function getTokenParsers()
     {
         return array(
-            new ContentTokenParser($this->retriever)
+            new ContentTokenParser($this->retriever, $this->cacheItemPool)
         );
     }
 

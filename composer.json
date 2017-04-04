@@ -7,6 +7,7 @@
     }
   },
   "require": {
-    "psr/cache": "^1.0"
+    "psr/cache": "^1.0",
+    "cache/void-adapter": "^0.4"
   }
 }
