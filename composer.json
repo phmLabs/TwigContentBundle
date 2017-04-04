@@ -5,5 +5,8 @@
     "psr-4": {
       "phmLabs\\TwigContentBundle\\": "src/"
     }
+  },
+  "require": {
+    "psr/cache": "^1.0"
   }
 }
