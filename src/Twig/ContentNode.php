@@ -9,12 +9,10 @@ use Symfony\Component\Cache\CacheItem;
 class ContentNode extends \Twig_Node
 {
     private $retriever;
-    private $cacheItemPool;
 
-    public function __construct($params, $lineno = 0, $tag = null, Retriever $retriever = null, CacheItemPoolInterface $cacheItemPool)
+    public function __construct($params, $lineno = 0, $tag = null, Retriever $retriever = null)
     {
         $this->retriever = $retriever;
-        $this->cacheItemPool = $cacheItemPool;
         parent::__construct(array('params' => $params), array(), $lineno, $tag);
     }
 
@@ -57,18 +55,9 @@ class ContentNode extends \Twig_Node
 
         $identifier = $this->getNode('params')->getNode(1)->getAttribute('value');
 
-        if ($this->cacheItemPool->hasItem($identifier)) {
-            $rawText = $this->cacheItemPool->getItem($identifier)->get();
-        } else {
-            $rawText = $this->retriever->render(
-                $identifier,
-                $this->getNode('params')->getNode(0)->getAttribute('data'));
-
-            $cacheItem = new CacheItem();
-            $cacheItem->set($rawText);
-            $cacheItem->expiresAfter(new \DateInterval('PT1D'));
-            $this->cacheItemPool->save($cacheItem);
-        }
+        $rawText = $this->retriever->render(
+            $identifier,
+            $this->getNode('params')->getNode(0)->getAttribute('data'));
 
         $compiler
             ->raw('echo "' . str_replace('"', '\"', $rawText) . '";')

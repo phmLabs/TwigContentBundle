@@ -8,12 +8,10 @@ use Psr\Cache\CacheItemPoolInterface;
 class ContentTokenParser extends \Twig_TokenParser
 {
     private $retriever;
-    private $cacheItemPool;
 
-    public function __construct(Retriever $retriever, CacheItemPoolInterface $cacheItemPool)
+    public function __construct(Retriever $retriever)
     {
         $this->retriever = $retriever;
-        $this->cacheItemPool = $cacheItemPool;
     }
 
     public function parse(\Twig_Token $token)

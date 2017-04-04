@@ -8,24 +8,17 @@ use Psr\Cache\CacheItemPoolInterface;
 
 class ContentExtension extends \Twig_Extension
 {
-    private $cacheItemPool;
     private $retriever;
 
-    public function __construct(Retriever $retriever, CacheItemPoolInterface $cacheItemPool = null)
+    public function __construct(Retriever $retriever)
     {
         $this->retriever = $retriever;
-
-        if ($cacheItemPool) {
-            $this->cacheItemPool = $cacheItemPool;
-        } else {
-            $this->cacheItemPool = new VoidCache();
-        }
     }
 
     public function getTokenParsers()
     {
         return array(
-            new ContentTokenParser($this->retriever, $this->cacheItemPool)
+            new ContentTokenParser($this->retriever)
         );
     }
 
