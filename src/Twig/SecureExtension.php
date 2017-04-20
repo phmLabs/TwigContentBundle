@@ -22,7 +22,9 @@ class SecureExtension extends \Twig_Extension
 
     public function secure($string)
     {
-        return strip_tags($string, $this->allowedTags);
+        $strippedString = strip_tags($string, $this->allowedTags);
+        $strippedString = preg_replace('^://(.*):(.*)@^', '://****:****@', $strippedString);
+        return $strippedString;
     }
 
     public function getName()
