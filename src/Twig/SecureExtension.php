@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nils.langner
- * Date: 19.05.16
- * Time: 09:00
- */
 
 namespace phmLabs\TwigContentBundle\Twig;
 
 class SecureExtension extends \Twig_Extension
 {
-    private $allowedTags = '<span></span><pre></pre><ul></ul><a></a><li></li><br><p></p><div></div><strong></strong><table></table><tr></tr><td></td>';
+    const ALLOWED_TAGS = '<span></span><pre></pre><ul></ul><a></a><li></li><br><p></p><div></div><strong></strong><table></table><tr></tr><td></td>';
 
     public function getFilters()
     {
@@ -22,8 +16,14 @@ class SecureExtension extends \Twig_Extension
 
     public function secure($string)
     {
-        $strippedString = strip_tags($string, $this->allowedTags);
+        return self::secureString($string);
+    }
+
+    public static function secureString($string)
+    {
+        $strippedString = strip_tags($string, self::ALLOWED_TAGS);
         $strippedString = preg_replace('^://(.*):(.*)@^', '://****:****@', $strippedString);
+
         return $strippedString;
     }
 
