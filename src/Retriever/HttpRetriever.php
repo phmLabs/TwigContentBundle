@@ -2,6 +2,9 @@
 
 namespace phmLabs\TwigContentBundle\Retriever;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Uri;
+
 class HttpRetriever extends Retriever
 {
     private $cmsBasePath;
@@ -13,7 +16,11 @@ class HttpRetriever extends Retriever
 
     protected function doRender($identifier)
     {
-        $content = @file_get_contents(str_replace('#identifier#', $identifier, $this->cmsBasePath));
+        $url = str_replace('#identifier#', $identifier, $this->cmsBasePath);
+
+        $client = new Client();
+        $response = $client->get(new Uri($url), ['connect_timeout' => 5, 'timeout' => 3.14]);
+        $content = (string)$response->getBody();
 
         if (!$content) {
             return false;
