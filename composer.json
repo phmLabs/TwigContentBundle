@@ -7,6 +7,7 @@
     }
   },
   "require": {
-    "psr/cache": "^1.0"
+    "psr/cache": "^1.0",
+    "phmlabs/httpclientcircuitbreaker": "dev-master"
   }
 }
