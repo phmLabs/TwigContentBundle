@@ -19,8 +19,13 @@ class HttpRetriever extends Retriever
         $url = str_replace('#identifier#', $identifier, $this->cmsBasePath);
 
         $client = new Client();
-        $response = $client->get(new Uri($url), ['connect_timeout' => 5, 'timeout' => 3.14]);
-        $content = (string)$response->getBody();
+
+        try {
+            $response = $client->get(new Uri($url), ['connect_timeout' => 5, 'timeout' => 3.14]);
+            $content = (string)$response->getBody();
+        } catch (\Exception $e) {
+            return false;
+        }
 
         if (!$content) {
             return false;
