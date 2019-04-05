@@ -17,7 +17,12 @@ class DurationExtension extends \Twig_Extension
         $result = str_replace('#duration#', $duration, $format);
 
         $result = str_replace('#unit#', $unit . 's', $result);
-        $result = str_replace('#units#', $unit . '(s)', $result);
+
+        if ($duration == 1) {
+            $result = str_replace('#units#', $unit, $result);
+        } else {
+            $result = str_replace('#units#', $unit . 's', $result);
+        }
 
         return $result;
     }
