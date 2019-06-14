@@ -21,7 +21,10 @@ class SecureExtension extends \Twig_Extension
 
     public static function secureString($string)
     {
-        $pattern = '^://(.*):(.*)@^';
+        if ($string instanceof \StdClass) {
+            $string = json_encode($string);
+        }
+
         $pattern = '#://[^\s]+:[^\s]+@#';
 
         $strippedString = strip_tags($string, self::ALLOWED_TAGS);
