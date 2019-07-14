@@ -25,8 +25,10 @@ class SecureExtension extends \Twig_Extension
             $string = json_encode($string);
         }
 
-        // $pattern = '#://[^\s]+:[^\s]+@[^(2x\.)]#';
-        $pattern = '#://[^\s]{.20}:[^\s]{.20}@#';
+        $string = str_replace('@2x', '&#64;2x', $string);
+
+        $pattern = '#://[^\s]+:[^\s]+@#';
+        // $pattern = '#://[^\s]{.20}:[^\s]{.20}@#';
 
         $strippedString = strip_tags($string, self::ALLOWED_TAGS);
         $strippedString = preg_replace($pattern, '://****:****@', $strippedString);
