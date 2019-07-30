@@ -15,7 +15,7 @@ services:
         public: false
         tags:
             - { name: twig.extension }
-            -
+
     phmlabs.content.twig.markup.extension:
         class: phmLabs\TwigContentBundle\Twig\MarkupExtension
         public: false
