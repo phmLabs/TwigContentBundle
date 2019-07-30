@@ -8,6 +8,7 @@
   },
   "require": {
     "psr/cache": "^1.0",
-    "leankoala/circuitbreaker": "dev-master"
+    "leankoala/circuitbreaker": "dev-master",
+    "erusev/parsedown": "1.8.0"
   }
 }
