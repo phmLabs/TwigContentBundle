@@ -16,8 +16,8 @@ services:
         tags:
             - { name: twig.extension }
             -
-    phmlabs.content.twig.enrich.extension:
-        class: phmLabs\TwigContentBundle\Twig\EnrichtExtension
+    phmlabs.content.twig.markup.extension:
+        class: phmLabs\TwigContentBundle\Twig\MarkupExtension
         public: false
         tags:
             - { name: twig.extension }
