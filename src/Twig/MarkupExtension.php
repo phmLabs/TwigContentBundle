@@ -19,10 +19,15 @@ class MarkupExtension extends \Twig_Extension
 
     public static function markupString($string)
     {
-        $url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i';
-        $string = preg_replace($url, '<a href="$0" target="_blank">$0</a>', $string);
+        $parsedown = new \Parsedown();
 
-        return $string;
+        $url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i';
+        //$string = preg_replace($url, '<a href="$0" target="_blank">$0</a>', $string);
+        $string = preg_replace($url, '[$0]($0)', $string);
+
+        $parsedString = $parsedown->parse($string);
+
+        return $parsedString;
     }
 
     public function getName()
