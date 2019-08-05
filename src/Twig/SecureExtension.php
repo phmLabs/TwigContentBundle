@@ -4,7 +4,7 @@ namespace phmLabs\TwigContentBundle\Twig;
 
 class SecureExtension extends \Twig_Extension
 {
-    const ALLOWED_TAGS = '<span></span><pre></pre><ul></ul><a></a><li></li><br><p></p><div></div><strong></strong><table></table><tr></tr><td></td>';
+    const ALLOWED_TAGS = '<span></span><pre></pre><ul></ul><a></a><li></li><br><p></p><div></div><strong></strong><table></table><tr></tr><td></td><i></i><em></em>';
 
     public function getFilters()
     {
