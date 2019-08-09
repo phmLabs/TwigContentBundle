@@ -21,13 +21,15 @@ class MarkupExtension extends \Twig_Extension
     {
         $parsedown = new \Parsedown();
 
-        $url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i';
+        //$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i';
         //$string = preg_replace($url, '<a href="$0" target="_blank">$0</a>', $string);
-        $string = preg_replace($url, '[$0]($0)', $string);
+        //$string = preg_replace($url, '<a href="$0">$0</a>', $string);
 
         $parsedString = $parsedown->parse($string);
 
-        return $parsedString;
+        $parsedWithTargetBlank = preg_replace("/<a(.*?)>/", "<a$1 target=\"_blank\">", $parsedString);
+
+        return $parsedWithTargetBlank;
     }
 
     public function getName()
